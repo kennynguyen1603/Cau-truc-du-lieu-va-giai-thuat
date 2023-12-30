@@ -19,18 +19,21 @@ public:
 
     void removeHead();         // remove the first node
     void removeTail();         // remove the last node
+    void removeAt(int k);      // remove the kth node
     void removeAfter(int k);   // remove the node after the kth node
     void removeBefore(int k);  // remove the node before the kth node
     void removeByValue(int x); // remove the node with value x
 
-    void printList(); // print the list
-    void printListReverse();
-    int count();
-    int getHead();
-    int getTail();
-    int getAt(int k);
+    int count(); // count the number of nodes
+    int sum();   // sum of all values stored in the list
     int search(int x);
+    void printSearch(int x); // print the position of the node with value x
+
+    void update(int x, int k); // update the value of the kth node to x
     void reverse();
     void sort();
-    void sortDesc();
+    void max();
+    void removeDuplicates(); // remove all duplicates
+
+    void traval();
 };
