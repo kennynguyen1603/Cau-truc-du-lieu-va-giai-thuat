@@ -23,7 +23,30 @@ public:
     void deleteList();           // xóa toàn bộ danh sách
     void deleteNodeX(int);       // xóa các node có giá trị x
 
-    void traval();           // duyệt danh sách
+    void traval(); // duyệt và in danh sách
+
     int countElList();       // đếm số phần tử trong danh sách
     void printCountElList(); // in ra số phần tử trong danh sách
+
+    int sumElList();       // tính tổng các phần tử trong danh sách
+    void printSumElList(); // in ra tổng các phần tử trong danh sách
+
+    int maxElList();       // tìm giá trị lớn nhất trong danh sách
+    void printMaxElList(); // in ra giá trị lớn nhất trong danh sách
+
+    int minElList();       // tìm giá trị nhỏ nhất trong danh sách
+    void printMinElList(); // in ra giá trị nhỏ nhất trong danh sách
+
+    void sortElList(); // sắp xếp danh sách tăng dần
+    void reverse();    // đảo ngược danh sách
+
+    void printElList(int); // in ra phần tử tại vị trí place
+
+    // các hàm tìm kiếm
+    int searchX(int); // tìm kiếm phần tử x trong danh sách
+    void printSearchX(int);
+
+    // các hàm khác
+    void swapNode(Node *, Node *); // đổi chỗ 2 node
+    void swapData(Node *, Node *); // đổi chỗ 2 data
 };

@@ -236,13 +236,7 @@ int LinkedList::countElList()
 
 void LinkedList::printCountElList()
 {
-    Node *p = this->head;
-    int count = 0;
-    while (p != nullptr)
-    {
-        count++;
-        p = p->getNext();
-    }
+    int count = countElList();
     cout << "The total number of nodes in the list is: " << count << endl;
 }
 
@@ -255,4 +249,165 @@ LinkedList::~LinkedList()
         delete p;
         p = this->head;
     }
+}
+
+int LinkedList::sumElList()
+{
+    Node *p = this->head;
+    int sum = 0;
+    while (p != nullptr)
+    {
+        sum += p->getData();
+        p = p->getNext();
+    }
+    return sum;
+}
+
+void LinkedList::printSumElList()
+{
+    int sum = sumElList();
+    cout << "The sum of all nodes in the list is: " << sum << endl;
+}
+
+int LinkedList::maxElList()
+{
+    Node *p = this->head;
+    int max = p->getData();
+    while (p != nullptr)
+    {
+        if (p->getData() > max)
+            max = p->getData();
+        p = p->getNext();
+    }
+    return max;
+}
+
+void LinkedList::printMaxElList()
+{
+    int max = maxElList();
+    cout << "The maximum value of all nodes in the list is: " << max << endl;
+}
+
+int LinkedList::minElList()
+{
+    Node *p = this->head;
+    int min = p->getData();
+    while (p != nullptr)
+    {
+        if (p->getData() < min)
+            min = p->getData();
+        p = p->getNext();
+    }
+    return min;
+}
+
+void LinkedList::printMinElList()
+{
+    int min = minElList();
+    cout << "The minimum value of all nodes in the list is: " << min << endl;
+}
+
+void LinkedList::swapNode(Node *a, Node *b)
+{
+    Node *temp = new Node;
+    temp->setData(a->getData());
+    a->setData(b->getData());
+    b->setData(temp->getData());
+}
+
+void LinkedList::swapData(Node *a, Node *b)
+{
+    int temp = a->getData();
+    a->setData(b->getData());
+    b->setData(temp);
+}
+
+void LinkedList::sortElList()
+{
+    Node *p = this->head; // p là node đầu tiên
+    Node *q = nullptr;    // q là node sau p
+    int temp;             // biến tạm để đổi chỗ giá trị của 2 node
+    while (p != nullptr)
+    {
+        q = p->getNext();
+        while (q != nullptr)
+        {
+            if (p->getData() > q->getData())
+            {
+                temp = p->getData();
+                p->setData(q->getData());
+                q->setData(temp);
+            }
+            q = q->getNext();
+        }
+        p = p->getNext();
+    }
+}
+
+void LinkedList::reverse()
+{
+    Node *current = this->head; // current là node đầu tiên
+    Node *prev = nullptr;       // prev là node trước current
+    Node *next = nullptr;       // next là node sau current
+    while (current != nullptr)
+    {
+        next = current->getNext(); // next là node sau current
+        current->setNext(prev);    // current trỏ về prev
+        prev = current;            // prev là current
+        current = next;            // current là next
+    }
+    this->head = prev; // head là prev
+}
+
+void LinkedList::printElList(int place)
+{
+    // place là vị trí cần in
+    int k = countElList();
+    // cout << k << endl; // test
+    if (place < 1 || place >= k + 1)
+        return; // kết thúc chương trình
+    else if (place == 1)
+    {
+        cout << "The value of the node at position " << place << " is: " << this->head->getData() << endl;
+        return; // kết thúc chương trình
+    }
+    else if (place == k)
+    {
+        cout << "The value of the node at position " << place << " is: " << this->tail->getData() << endl;
+        return; // kết thúc chương trình
+    }
+    // place nằm giữa 2 đầu
+    else
+    {
+        Node *temp = this->head;
+        for (int i = 1; i < place; i++)
+        {
+            temp = temp->getNext();
+        }
+        // temp ở vị trí muốn IN (tứ là k - 1)
+        cout << "The value of the node at position " << place << " is: " << temp->getData() << endl;
+    }
+}
+
+int LinkedList::searchX(int value)
+{
+    Node *p = this->head;
+    int flag = 1;
+    while (p != nullptr)
+    {
+        if (p->getData() == value)
+            return flag;
+        p = p->getNext();
+        flag++;
+    }
+    return -1;
+}
+
+void LinkedList::printSearchX(int value)
+{
+    int place = searchX(value);
+    if (place == -1)
+        cout << "The value " << value << " is not in the list." << endl;
+    else
+        cout << "The value " << value << " is in the list at position " << place << endl;
 }
