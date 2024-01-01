@@ -25,10 +25,6 @@ ProductBSTNode *ProductBST::insert(ProductBSTNode *node, Product *product)
         return new ProductBSTNode(*product);
     else
     {
-        // if (product->getId() < node->getProduct().getId())
-        //     insert(node->getLeft(), product);
-        // else if (product->getId() > node->getProduct().getId())
-        //     insert(node->getRight(), product);
         if (product->getId() < node->getProduct().getId())
             node->setLeft(insert(node->getLeft(), product));
         else if (product->getId() > node->getProduct().getId())
@@ -99,7 +95,6 @@ void ProductBST::displayAvailable(ProductBSTNode *node)
         displayAvailable(node->getRight());
     }
     else
-        // cout << "No product available!" << endl;
         return;
 }
 
@@ -213,4 +208,29 @@ void ProductBST::displayAvailable()
 void ProductBST::deleteSoldOut()
 {
     this->root = deleteSoldOut(this->root);
+}
+
+ProductBSTNode *ProductBST::inorderCategory(ProductBSTNode *node, string category)
+{
+    if (node != nullptr)
+    {
+        if (node->getProduct().getCategory() == category)
+            return node;
+        inorderCategory(node->getLeft(), category);
+        inorderCategory(node->getRight(), category);
+    }
+    else
+        return nullptr;
+}
+
+void ProductBST::displayCategory()
+{
+    string category;
+    cout << "Enter category: ";
+    getline(cin, category);
+    ProductBSTNode *node = inorderCategory(this->root, category);
+    if (node != nullptr)
+        node->output();
+    else
+        cout << "Category not found!" << endl;
 }

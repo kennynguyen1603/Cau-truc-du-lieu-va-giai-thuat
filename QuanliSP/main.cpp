@@ -28,6 +28,9 @@ int main()
     cout << "\nSearching for product ID 1:" << endl;
     bst.search(1);
 
+    cout << "\nSearching for product ID 4:" << endl; // Product ID 4 does not exist
+    bst.search(4);
+
     // Display available products
     cout << "\nAvailable Products:" << endl;
     bst.displayAvailable();
@@ -36,6 +39,10 @@ int main()
     bst.deleteSoldOut();
     cout << "\nProducts after deleting sold out items:" << endl;
     bst.display();
+
+    // Display products by category
+    cout << "\nProducts in category:" << endl;
+    bst.displayCategory();
 
     return 0;
 }

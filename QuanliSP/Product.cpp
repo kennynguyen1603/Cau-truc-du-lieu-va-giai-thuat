@@ -137,7 +137,7 @@ void Product::input()
 
 void Product::output()
 {
-    cout << setw(5) << this->id << setw(20) << this->name << setw(20) << this->status << setw(10) << this->quantity << setw(10) << this->price << setw(10) << this->discount << setw(10) << this->total << endl;
+    cout << setw(5) << this->id << setw(20) << this->name << setw(20) << this->category << setw(20) << this->status << setw(10) << this->quantity << setw(10) << this->price << setw(10) << this->discount << setw(10) << this->total << endl;
 }
 
 void Product::outputToFile(ofstream &file)

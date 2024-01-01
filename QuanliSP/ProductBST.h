@@ -38,4 +38,7 @@ public:
     void search(int id);
     void displayAvailable();
     void deleteSoldOut();
+
+    ProductBSTNode *inorderCategory(ProductBSTNode *node, string category);
+    void displayCategory();
 };
