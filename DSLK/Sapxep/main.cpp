@@ -39,7 +39,6 @@ int main()
     cout << "List B: ";
     B.displayList();
 
-    // A.swapEvenOdd(A, B);
     A.swapEvenOdd(B);
 
     cout << "List A after swapping: ";

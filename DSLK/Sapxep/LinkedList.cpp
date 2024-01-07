@@ -173,50 +173,104 @@ void LinkedList::removeDuplicates()
     }
 }
 
+// void LinkedList::swapEvenOdd(LinkedList &other)
+// {
+//     Node *p = this->head;
+//     Node *q = other.head;
+//     LinkedList tempA;
+//     LinkedList tempB;
+//     while (p != nullptr && q != nullptr)
+//     {
+//         if (p->getData() % 2 == 0)
+//             tempA.appendList(p->getData());
+//         else
+//             tempB.appendList(p->getData());
+
+//         if (q->getData() % 2 != 0)
+//             tempB.appendList(q->getData());
+//         else
+//             tempA.appendList(q->getData());
+
+//         p = p->getNext();
+//         q = q->getNext();
+//     }
+
+//     tempA.displayList();
+//     tempB.displayList();
+
+//     // xóa các node trùng nhau
+//     tempA.removeDuplicates();
+//     tempB.removeDuplicates();
+
+//     // xóa danh sách cũ
+//     this->deleteList();
+//     other.deleteList();
+
+//     // gán danh sách mới
+//     Node *current = tempA.head;
+//     while (current != nullptr)
+//     {
+//         this->appendList(current->getData());
+//         current = current->getNext();
+//     }
+
+//     current = tempB.head;
+//     while (current != nullptr)
+//     {
+//         other.appendList(current->getData());
+//         current = current->getNext();
+//     }
+// }
+
 void LinkedList::swapEvenOdd(LinkedList &other)
 {
     Node *p = this->head;
     Node *q = other.head;
     LinkedList tempA;
     LinkedList tempB;
-    while (p != nullptr && q != nullptr)
+
+    while (p != nullptr)
     {
         if (p->getData() % 2 == 0)
+        {
             tempA.appendList(p->getData());
+        }
         else
+        {
             tempB.appendList(p->getData());
-
-        if (q->getData() % 2 == 0)
-            tempA.appendList(q->getData());
-        else
-            tempB.appendList(q->getData());
-
+        }
         p = p->getNext();
+    }
+
+    while (q != nullptr)
+    {
+        if (q->getData() % 2 == 0)
+        {
+            tempA.appendList(q->getData());
+        }
+        else
+        {
+            tempB.appendList(q->getData());
+        }
         q = q->getNext();
     }
 
-    // xóa các node trùng nhau
-    tempA.removeDuplicates();
-    tempB.removeDuplicates();
-
-    // xóa danh sách cũ
+    // Xóa danh sách cũ
     this->deleteList();
     other.deleteList();
 
-    // gán danh sách mới
-    while (tempA.head != nullptr)
+    // Gán danh sách mới từ tempA và tempB
+    Node *current = tempA.head;
+    while (current != nullptr)
     {
-        this->insertTail(tempA.head);
-        tempA.head = tempA.head->getNext();
+        this->appendList(current->getData());
+        current = current->getNext();
     }
 
-    while (tempB.head != nullptr)
+    current = tempB.head;
+    while (current != nullptr)
     {
-        other.insertTail(tempB.head);
-        tempB.head = tempB.head->getNext();
+        other.appendList(current->getData());
+        current = current->getNext();
     }
-
-    // xóa danh sách tạm
-    tempA.deleteList();
-    tempB.deleteList();
 }
