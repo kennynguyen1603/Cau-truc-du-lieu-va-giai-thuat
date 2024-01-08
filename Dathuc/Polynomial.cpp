@@ -266,3 +266,42 @@ void Polynomial::derivative()
         temp = temp->getNext();
     }
 }
+
+void Polynomial::deleteNode(int heso, int somu)
+{
+    // Neu danh sach rong
+    if (root == nullptr)
+    {
+        cout << "Danh sach rong" << endl;
+        return;
+    }
+    // Neu node can xoa la node dau tien
+    if (root->getSomu() == somu && root->getHeso() == heso)
+    {
+        Node *temp = this->root;
+        root = root->getNext();
+        delete temp;
+        cout << "Xoa thanh cong" << endl;
+        return;
+    }
+
+    // Neu node can xoa khong phai la node dau tien
+    Node *temp = root;    // Node can xoa
+    Node *prev = nullptr; // Node truoc node can xoa
+    while (temp != nullptr && (temp->getSomu() != somu || temp->getHeso() != heso))
+    {
+        prev = temp;
+        temp = temp->getNext();
+    }
+
+    if (temp == nullptr)
+    {
+        cout << "Khong tim thay phan tu can xoa" << endl;
+        return;
+    }
+
+    // tim thay node can xoa
+    prev->setNext(temp->getNext());
+    delete temp;
+    cout << "Xoa thanh cong" << endl;
+}

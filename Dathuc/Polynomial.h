@@ -21,4 +21,6 @@ public:
     // void run();
     Polynomial operator+(Polynomial &other); // cộng 2 đa thức
     Polynomial operator-(Polynomial &other); // trừ 2 đa thức
+
+    void deleteNode(int heso, int somu); // xóa node có số mũ cho trước
 };
